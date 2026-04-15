@@ -74,7 +74,10 @@
 	<p>{error.message}</p>
 {:else if courseStats?.modules}
 	<div class="mx-auto mt-8 flex max-w-5xl items-center justify-between px-4">
-		<select bind:value={selectedModuleCode} class="h-10 min-w-[200px] rounded border px-3 py-2">
+		<select
+			bind:value={selectedModuleCode}
+			class="h-10 min-w-[200px] rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-700 dark:bg-[#1a1a1a] dark:text-white"
+		>
 			<option value={undefined}>{getTranslation('allModules', currentLocale)}</option>
 			{#each uniqueModuleCodes as code}
 				<option value={code}>{code}</option>

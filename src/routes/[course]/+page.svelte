@@ -2,36 +2,22 @@
 	import { page } from '$app/state';
 	import { Button } from 'bits-ui';
 	import CoursePie from '$lib/components/CoursePie.svelte';
-	import { getCourseStatistic, type DataCourseStatistic } from 'liu-tentor-package';
+	import type { DataCourseStatistic } from 'liu-tentor-package';
 	import { locale, getTranslation } from '$lib/i18n';
 	import type { Locale } from '$lib/i18n/translations';
 	import type { LanguageContent } from 'liu-tentor-package';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	let course = page.params.course;
-
-	let loading = $state(true);
-	let error: null | Error = $state(null);
-	let courseStats: DataCourseStatistic = $state({} as DataCourseStatistic);
+	let courseStats: DataCourseStatistic = $derived(data.courseStats ?? ({} as DataCourseStatistic));
 	let currentPage = $state(0);
 	let selectedModuleCode = $state<string | undefined>(undefined);
 	let currentLocale = $state<Locale>('en');
 	const perPage = 6;
 
 	locale.subscribe((l) => (currentLocale = l));
-
-	$effect(() => {
-		getCourseStats();
-	});
-
-	async function getCourseStats() {
-		if (!course) {
-			error = new Error('Course not found');
-			loading = false;
-			return;
-		}
-		courseStats = (await getCourseStatistic(course)) ?? ({} as DataCourseStatistic);
-		loading = false;
-	}
 
 	function next() {
 		currentPage++;
@@ -68,11 +54,7 @@
 	<p>{getLocalizedTitle(courseStats.courseTitle)}</p>
 </div>
 
-{#if loading}
-	<p>{getTranslation('loading', currentLocale)}</p>
-{:else if error}
-	<p>{error.message}</p>
-{:else if courseStats?.modules}
+{#if courseStats?.modules}
 	<div class="mx-auto mt-8 flex max-w-5xl items-center justify-between px-4">
 		<select
 			bind:value={selectedModuleCode}

@@ -15,7 +15,8 @@ export const translations = {
 		myWebsite: 'My Website',
 		loading: 'Loading...',
 		notFound: 'Course not found',
-		modules: 'modules'
+		modules: 'modules',
+		notAffiliated: 'Not affiliated with Linköping University'
 	},
 	sv: {
 		welcome: 'Välkommen till LIU tentastatistik',
@@ -33,7 +34,8 @@ export const translations = {
 		myWebsite: 'Min webbplats',
 		loading: 'Laddar...',
 		notFound: 'Kursen hittades inte',
-		modules: 'moduler'
+		modules: 'moduler',
+		notAffiliated: 'Inte ansluten till Linköpings universitet'
 	}
 } as const;
 

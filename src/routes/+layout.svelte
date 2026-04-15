@@ -28,13 +28,18 @@
 
 	<div class="flex-1">{@render children()}</div>
 
-	<footer class="flex w-full shrink-0 items-center justify-center gap-4 border-t p-4">
-		<a href="https://github.com/LiuStats" target="_blank" rel="noopener" class="hover:underline">
-			{getTranslation('github', currentLocale)}
-		</a>
-		<span>|</span>
-		<a href="https://lukasabbe.com/" target="_blank" rel="noopener" class="hover:underline">
-			{getTranslation('myWebsite', currentLocale)}
-		</a>
+	<footer
+		class="flex w-full shrink-0 flex-col items-center justify-center gap-2 border-t p-4 text-sm text-gray-500 dark:text-gray-400"
+	>
+		<span>{getTranslation('notAffiliated', currentLocale)}</span>
+		<div class="flex items-center gap-4">
+			<a href="https://github.com/LiuStats" target="_blank" rel="noopener" class="hover:underline">
+				{getTranslation('github', currentLocale)}
+			</a>
+			<span>|</span>
+			<a href="https://lukasabbe.com/" target="_blank" rel="noopener" class="hover:underline">
+				{getTranslation('myWebsite', currentLocale)}
+			</a>
+		</div>
 	</footer>
 </div>

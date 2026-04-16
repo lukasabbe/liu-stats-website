@@ -36,6 +36,15 @@
 		totalStudents > 0 ? ((passedStudents / totalStudents) * 100).toFixed(1) : 0
 	);
 
+	const gradePercentages = $derived(
+		moduleData.grades.map((g) => ({
+			grade: g.grade,
+			quantity: g.quantity,
+			percentage: totalStudents > 0 ? ((g.quantity / totalStudents) * 100).toFixed(1) : 0,
+			color: colors[moduleData.grades.indexOf(g)]
+		}))
+	);
+
 	function formatDate(date: string): string {
 		return new Date(date).toLocaleDateString(currentLocale === 'sv' ? 'sv-SE' : 'en-US');
 	}
@@ -88,6 +97,23 @@
 				height={200}
 				padding={{ top: 20, right: 20, bottom: 40, left: 40 }}
 			/>
+
+			<div class="mt-4 md:hidden">
+				<div class="space-y-2">
+					{#each gradePercentages as item}
+						<div class="flex items-center justify-between rounded border p-3">
+							<div class="flex items-center gap-3">
+								<div class="h-4 w-4 rounded-full" style:background-color={item.color}></div>
+								<span class="font-medium">{item.grade}</span>
+							</div>
+							<div class="text-right">
+								<span class="font-bold">{item.quantity}</span>
+								<span class="ml-1 text-sm text-gray-500">({item.percentage}%)</span>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
 		</Dialog.Content>
 	</Dialog.Portal>
 </Dialog.Root>

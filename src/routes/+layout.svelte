@@ -33,12 +33,12 @@
 	>
 		<span>{getTranslation('notAffiliated', currentLocale)}</span>
 		<div class="flex items-center gap-4">
-			<a href="https://github.com/LiuStats" target="_blank" rel="noopener" class="hover:underline">
+			<a href="https://github.com/lukasabbe/liu-stats-website" target="_blank" rel="noopener" class="hover:underline">
 				{getTranslation('github', currentLocale)}
 			</a>
 			<span>|</span>
 			<a
-				href="https://github.com/lukasabbe/liu-stats-website"
+				href="https://lukasabbe.com/"
 				target="_blank"
 				rel="noopener"
 				class="hover:underline"

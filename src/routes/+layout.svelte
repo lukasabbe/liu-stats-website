@@ -37,7 +37,12 @@
 				{getTranslation('github', currentLocale)}
 			</a>
 			<span>|</span>
-			<a href="https://lukasabbe.com/" target="_blank" rel="noopener" class="hover:underline">
+			<a
+				href="https://github.com/lukasabbe/liu-stats-website"
+				target="_blank"
+				rel="noopener"
+				class="hover:underline"
+			>
 				{getTranslation('myWebsite', currentLocale)}
 			</a>
 		</div>

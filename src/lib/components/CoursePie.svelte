@@ -57,3 +57,11 @@
 		/>
 	</div>
 </div>
+
+<style>
+	@media (pointer: coarse) {
+		:global(.lc-tooltip-root) {
+			display: none !important;
+		}
+	}
+</style>

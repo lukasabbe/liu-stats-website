@@ -64,9 +64,4 @@
 			display: none !important;
 		}
 	}
-
-	:global(.lc-tooltip-container[data-variant='default']) {
-		background-color: light-dark(#fff, #2a2a2a) !important;
-		backdrop-filter: none !important;
-	}
 </style>

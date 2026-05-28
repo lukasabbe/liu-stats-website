@@ -48,3 +48,14 @@
 		</div>
 	</footer>
 </div>
+
+<style>
+	:global(.lc-tooltip-container[data-variant='default']) {
+		background-color: #fff !important;
+		backdrop-filter: none !important;
+	}
+
+	:global(.dark .lc-tooltip-container[data-variant='default']) {
+		background-color: #2a2a2a !important;
+	}
+</style>

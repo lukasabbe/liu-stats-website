@@ -45,6 +45,13 @@
 		}))
 	);
 
+	const chartData = $derived(
+		moduleData.grades.map((g) => ({
+			...g,
+			percentage: totalStudents > 0 ? ((g.quantity / totalStudents) * 100).toFixed(1) : 0,
+		}))
+	);
+
 	function formatDate(date: string): string {
 		return new Date(date).toLocaleDateString(currentLocale === 'sv' ? 'sv-SE' : 'en-US');
 	}
@@ -54,7 +61,7 @@
 	<Dialog.Portal>
 		<Dialog.Overlay class="fixed inset-0 z-50 bg-black/50" />
 		<Dialog.Content
-			class="fixed top-1/2 left-1/2 z-50 max-h-[90vh] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-gray-300 bg-gray-50 p-6 shadow-xl dark:border-gray-700 dark:bg-[#1a1a1a]"
+			class="fixed top-1/2 left-1/2 z-50 max-h-[90vh] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-white bg-gray-50 p-6 shadow-xl dark:border-white dark:bg-[#1a1a1a]"
 		>
 			<div class="mb-4 flex items-start justify-between">
 				<div>
@@ -89,11 +96,17 @@
 				{getTranslation('gradeDistribution', currentLocale)}
 			</h3>
 			<BarChart
-				data={moduleData.grades}
+				data={chartData}
 				x="grade"
 				y="quantity"
+				c="grade"
 				cRange={colors}
 				orientation="vertical"
+				labels={{
+					value: (d: { quantity: number; percentage: string }) =>
+						`${d.quantity} (${d.percentage}%)`,
+					placement: 'outside'
+				}}
 				height={200}
 				padding={{ top: 20, right: 20, bottom: 40, left: 40 }}
 			/>
@@ -117,3 +130,10 @@
 		</Dialog.Content>
 	</Dialog.Portal>
 </Dialog.Root>
+
+<style>
+	:global(.lc-tooltip-container[data-variant='default']) {
+		background-color: light-dark(#fff, #2a2a2a) !important;
+		backdrop-filter: none !important;
+	}
+</style>

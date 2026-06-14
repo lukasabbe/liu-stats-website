@@ -4,6 +4,7 @@
 	import { ChevronsDownUp, Check, LoaderCircle, Search } from 'lucide-svelte';
 	import { locale, getTranslation } from '$lib/i18n';
 	import type { Locale } from '$lib/i18n/translations';
+	import { resolve } from '$app/paths';
 
 	let courses: string[] = $state([]);
 	let loading = $state(true);
@@ -32,7 +33,7 @@
 			}
 			const data = await res.json();
 			courses = data;
-		} catch (e) {
+		} catch {
 			error = true;
 		} finally {
 			loading = false;
@@ -42,7 +43,7 @@
 	function handleCourseSelect(course: string | undefined) {
 		if (!course) return;
 		inputValue = '';
-		goto(`/${course}`);
+		goto(resolve(`/${course}`));
 	}
 </script>
 

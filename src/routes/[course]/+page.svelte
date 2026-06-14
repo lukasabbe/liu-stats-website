@@ -61,7 +61,7 @@
 			class="h-10 min-w-[200px] rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-700 dark:bg-[#1a1a1a] dark:text-white"
 		>
 			<option value={undefined}>{getTranslation('allModules', currentLocale)}</option>
-			{#each uniqueModuleCodes as code}
+			{#each uniqueModuleCodes as code (code)}
 				<option value={code}>{code}</option>
 			{/each}
 		</select>
@@ -77,7 +77,7 @@
 	{@const start = currentPage * perPage}
 	{@const visibleModules = filteredModules.slice(start, start + perPage)}
 	<div class="mx-auto grid max-w-5xl grid-cols-1 gap-4 p-4 md:grid-cols-2">
-		{#each visibleModules as module}
+		{#each visibleModules as module (module)}
 			<CoursePie moduleData={module} />
 		{/each}
 	</div>

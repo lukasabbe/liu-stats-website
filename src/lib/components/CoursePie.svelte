@@ -4,6 +4,7 @@
 	import type { Module } from 'liu-tentor-package';
 	import { locale } from '$lib/i18n';
 	import type { Locale } from '$lib/i18n/translations';
+	import { List } from 'lucide-svelte';
 
 	let { moduleData }: { moduleData: Module } = $props();
 	let open = $state(false);
@@ -35,15 +36,24 @@
 
 <ModuleModal {moduleData} bind:open />
 
-<div class="flex min-w-0 flex-col rounded-lg border border-gray-300 p-4">
-	<button
-		onclick={() => (open = true)}
-		class="w-full cursor-pointer border-0 bg-transparent p-0 text-left"
-	>
-		<h1 class="mb-1 text-xl font-semibold">{moduleData.moduleCode}</h1>
-	</button>
+<div class="relative flex min-w-0 flex-col rounded-lg border border-gray-300 p-4">
+	<div class="flex items-start justify-between gap-2">
+		<button
+			onclick={() => (open = true)}
+			class="min-w-0 cursor-pointer border-0 bg-transparent p-0 text-left"
+		>
+			<h1 class="mb-1 text-xl font-semibold">{moduleData.moduleCode}</h1>
+		</button>
+		<button
+			onclick={() => (open = true)}
+			class="cursor-pointer rounded border p-2 transition-all active:scale-95"
+			aria-label="Details"
+		>
+			<List size={16} />
+		</button>
+	</div>
 	<p class="mb-4 text-sm text-gray-500">{formatDate(moduleData.date)}</p>
-	<div class="min-h-[300px]">
+	<div class="min-h-75">
 		<PieChart
 			data={moduleData.grades}
 			key="grade"

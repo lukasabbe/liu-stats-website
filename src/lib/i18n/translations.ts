@@ -35,7 +35,7 @@ export const translations = {
 		loading: 'Laddar...',
 		notFound: 'Kursen hittades inte',
 		modules: 'moduler',
-		notAffiliated: 'Inte ansluten till Linköpings universitet'
+		notAffiliated: 'Hemsidan har ingen koppling till Linköpings Universitet.'
 	}
 } as const;
 

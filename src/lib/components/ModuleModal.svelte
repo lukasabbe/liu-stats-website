@@ -48,7 +48,7 @@
 	const chartData = $derived(
 		moduleData.grades.map((g) => ({
 			...g,
-			percentage: totalStudents > 0 ? ((g.quantity / totalStudents) * 100).toFixed(1) : 0,
+			percentage: totalStudents > 0 ? ((g.quantity / totalStudents) * 100).toFixed(1) : 0
 		}))
 	);
 
@@ -113,7 +113,7 @@
 
 			<div class="mt-4 md:hidden">
 				<div class="space-y-2">
-					{#each gradePercentages as item}
+					{#each gradePercentages as item (item)}
 						<div class="flex items-center justify-between rounded border p-3">
 							<div class="flex items-center gap-3">
 								<div class="h-4 w-4 rounded-full" style:background-color={item.color}></div>
@@ -130,4 +130,3 @@
 		</Dialog.Content>
 	</Dialog.Portal>
 </Dialog.Root>
-

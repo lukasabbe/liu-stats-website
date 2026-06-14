@@ -53,7 +53,7 @@
 	);
 
 	function formatDate(date: string): string {
-		return new Date(date).toLocaleDateString(currentLocale === 'sv' ? 'sv-SE' : 'en-US');
+		return new Date(date).toLocaleDateString('sv-SE');
 	}
 </script>
 

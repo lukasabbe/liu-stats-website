@@ -3,14 +3,12 @@
 	import ModuleModal from './ModuleModal.svelte';
 	import type { Module } from 'liu-tentor-package';
 	import { locale } from '$lib/i18n';
-	import type { Locale } from '$lib/i18n/translations';
 	import { List } from 'lucide-svelte';
 
 	let { moduleData }: { moduleData: Module } = $props();
 	let open = $state(false);
-	let currentLocale = $state<Locale>('en');
 
-	locale.subscribe((l) => (currentLocale = l));
+	locale.subscribe(() => {});
 
 	const colors = $derived.by(() => {
 		const passingGrades = moduleData.grades.filter((g) => g.grade !== 'U');
@@ -30,7 +28,7 @@
 	});
 
 	function formatDate(date: string): string {
-		return new Date(date).toLocaleDateString(currentLocale === 'sv' ? 'sv-SE' : 'en-US');
+		return new Date(date).toLocaleDateString('sv-SE');
 	}
 </script>
 

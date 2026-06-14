@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import { Button } from 'bits-ui';
 	import CoursePie from '$lib/components/CoursePie.svelte';
+	import EvaluationReports from '$lib/components/EvaluationReports.svelte';
 	import type { DataCourseStatistic } from 'liu-tentor-package';
 	import { locale, getTranslation } from '$lib/i18n';
 	import type { Locale } from '$lib/i18n/translations';
@@ -15,6 +16,7 @@
 	let currentPage = $state(0);
 	let selectedModuleCode = $state<string | undefined>(undefined);
 	let currentLocale = $state<Locale>('en');
+	let showReports = $state(false);
 	const perPage = 6;
 
 	locale.subscribe((l) => (currentLocale = l));
@@ -54,7 +56,22 @@
 	<p>{getLocalizedTitle(courseStats.courseTitle)}</p>
 </div>
 
-{#if courseStats?.modules}
+<div class="mx-auto mt-4 flex max-w-5xl justify-center px-4">
+	<button
+		onclick={() => (showReports = !showReports)}
+		class="rounded border px-4 py-2 transition-all active:scale-95"
+	>
+		{showReports ? getTranslation('viewStats', currentLocale) : getTranslation('viewReports', currentLocale)}
+	</button>
+</div>
+
+{#if showReports}
+	{#if data.evaluationReports && data.evaluationReports.length > 0}
+		<EvaluationReports reports={data.evaluationReports} />
+	{:else}
+		<p class="mt-8 text-center text-gray-500">{getTranslation('noReports', currentLocale)}</p>
+	{/if}
+{:else if courseStats?.modules}
 	<div class="mx-auto mt-8 flex max-w-5xl items-center justify-between px-4">
 		<select
 			bind:value={selectedModuleCode}

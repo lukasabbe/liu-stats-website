@@ -16,7 +16,17 @@ export const translations = {
 		loading: 'Loading...',
 		notFound: 'Course not found',
 		modules: 'modules',
-		notAffiliated: 'Not affiliated with Linköping University'
+		notAffiliated: 'Not affiliated with Linköping University',
+		viewReports: 'View Evaliuate Scores',
+		viewStats: 'View Exam Stats',
+		noReports: 'No Evaliuate scores available for this course.',
+		showData: 'Show data',
+		closeData: 'Close data',
+		date: 'Date',
+		average: 'Average',
+		evalBanner:
+			'Course Evaliuate scores are now available! Search for a course and click "View Evaliuate Scores" to see trends over time.',
+		evalBannerTitle: 'New'
 	},
 	sv: {
 		welcome: 'Välkommen till LIU tentastatistik',
@@ -35,7 +45,17 @@ export const translations = {
 		loading: 'Laddar...',
 		notFound: 'Kursen hittades inte',
 		modules: 'moduler',
-		notAffiliated: 'Hemsidan har ingen koppling till Linköpings Universitet.'
+		notAffiliated: 'Hemsidan har ingen koppling till Linköpings Universitet.',
+		viewReports: 'Visa Evaliuatebetyg',
+		viewStats: 'Visa tentastatistik',
+		noReports: 'Inga Evaliuatebetyg tillgängliga för denna kurs.',
+		showData: 'Visa data',
+		closeData: 'Stäng data',
+		date: 'Datum',
+		average: 'Medelvärde',
+		evalBanner:
+			'Evaliuatebetyg finns nu tillgängliga! Sök efter en kurs och klicka på "Visa Evaliuatebetyg" för att se trendgrafer',
+		evalBannerTitle: 'Nyhet'
 	}
 } as const;
 

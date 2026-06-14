@@ -83,18 +83,18 @@
 					yDomain={[1, 5]}
 					height={300}
 					padding={{ top: 25, right: 20, bottom: 50, left: 65 }}
-				props={{
-					xAxis: {
-						format: 'year',
-						tickLabelProps: { style: 'font-size: 16px' }
-					},
-					yAxis: {
-						tickLabelProps: { style: 'font-size: 16px', dx: -12 }
-					},
-					tooltip: {
-						header: { format: swedishDate }
-					}
-				}}
+					props={{
+						xAxis: {
+							format: 'year',
+							tickLabelProps: { style: 'font-size: 16px', dy: 25 }
+						},
+						yAxis: {
+							tickLabelProps: { style: 'font-size: 16px', dx: -25 }
+						},
+						tooltip: {
+							header: { format: swedishDate }
+						}
+					}}
 				>
 					{#snippet marks({ context })}
 						{#each context.series.visibleSeries as s (s.key)}
@@ -107,18 +107,20 @@
 					<button
 						onclick={() => toggle(questionTitle)}
 						class="flex cursor-pointer items-center gap-1 rounded border px-3 py-1 text-sm transition-all active:scale-95"
-				>
-					{isOpen ? getTranslation('closeData', currentLocale) : getTranslation('showData', currentLocale)}
-					<ChevronDown class="h-4 w-4 transition-transform {isOpen ? 'rotate-180' : ''}" />
+					>
+						{isOpen
+							? getTranslation('closeData', currentLocale)
+							: getTranslation('showData', currentLocale)}
+						<ChevronDown class="h-4 w-4 transition-transform {isOpen ? 'rotate-180' : ''}" />
 					</button>
 				</div>
 				{#if isOpen}
 					<div class="mt-3 overflow-x-auto">
 						<table class="w-full text-left text-sm">
 							<thead>
-							<tr class="border-b border-gray-300 dark:border-gray-700">
-								<th class="py-2 pr-4 font-semibold">{getTranslation('date', currentLocale)}</th>
-								<th class="py-2 font-semibold">{getTranslation('average', currentLocale)}</th>
+								<tr class="border-b border-gray-300 dark:border-gray-700">
+									<th class="py-2 pr-4 font-semibold">{getTranslation('date', currentLocale)}</th>
+									<th class="py-2 font-semibold">{getTranslation('average', currentLocale)}</th>
 								</tr>
 							</thead>
 							<tbody>

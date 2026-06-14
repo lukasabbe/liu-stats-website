@@ -3,16 +3,28 @@ import { translations, type Locale } from './translations';
 import type { TranslationKey } from './translations';
 
 function createLocaleStore() {
-	const { subscribe, set, update } = writable<Locale>('en');
+	const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('locale') : null;
+	const { subscribe, set, update } = writable<Locale>(stored === 'sv' ? 'sv' : 'en');
 
 	return {
 		subscribe,
-		set,
-		setSwedish: () => set('sv'),
-		setEnglish: () => set('en'),
+		set: (l: Locale) => {
+			if (typeof localStorage !== 'undefined') localStorage.setItem('locale', l);
+			set(l);
+		},
+		setSwedish: () => {
+			if (typeof localStorage !== 'undefined') localStorage.setItem('locale', 'sv');
+			set('sv');
+		},
+		setEnglish: () => {
+			if (typeof localStorage !== 'undefined') localStorage.setItem('locale', 'en');
+			set('en');
+		},
 		toggle: () =>
 			update((current) => {
-				return current === 'en' ? 'sv' : 'en';
+				const next = current === 'en' ? 'sv' : 'en';
+				if (typeof localStorage !== 'undefined') localStorage.setItem('locale', next);
+				return next;
 			})
 	};
 }

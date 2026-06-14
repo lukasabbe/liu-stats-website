@@ -18,6 +18,16 @@
 	locale.subscribe((l) => (currentLocale = l));
 
 	$effect(() => {
+		const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('locale') : null;
+		if (!stored) {
+			const lang = navigator.language;
+			if (lang.startsWith('sv')) {
+				locale.set('sv');
+			}
+		}
+	});
+
+	$effect(() => {
 		const unsub = navigating.subscribe((v) => {
 			if (v) {
 				clearTimeout(hideTimer);
